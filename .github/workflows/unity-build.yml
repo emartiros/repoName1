@@ -53,11 +53,12 @@ jobs:
           path: build/Android
 
       - name: Download python dependencies
+        if: ${{ matrix.targetPlatform == 'Android' }}
         run: |
           pip install -r runner/requirements.txt
 
       - name: Post to the Slack channel
-        if: ${{ matrix.targetPlatform == 'Android' && secrets.SLACK_CHANNEL != null && secrets.SLACK_TOKEN != null }}
+        if: ${{ matrix.targetPlatform == 'Android' }}
         run: |
           pip install -r .github/workflows/slack/requirements.txt
           python .github/workflows/slack/__init__.py Android build/Android/Android.apk
