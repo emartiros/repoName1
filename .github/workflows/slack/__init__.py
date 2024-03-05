@@ -8,7 +8,7 @@ if __name__ == '__main__':
         os = argv[1]
         file_path = argv[2]
         client = WebClient(token=getenv('SLACK_TOKEN'))
-        channel_id = getenv('SLACK_CHANNEL')
+        channel_id = '#' + getenv('SLACK_CHANNEL')
         message = "New " + os + " build"
         response = client.files_upload(
             channels=channel_id,
