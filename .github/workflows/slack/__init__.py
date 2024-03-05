@@ -10,6 +10,10 @@ if __name__ == '__main__':
         client = WebClient(token=getenv('SLACK_TOKEN'))
         channel_id = '#' + getenv('SLACK_CHANNEL')
         message = "New " + os + " build"
+        response = client.chat_postMessage(
+            channel=channel_id,
+            text=message
+        )
         response = client.files_upload(
             channels=channel_id,
             initial_comment=message,
