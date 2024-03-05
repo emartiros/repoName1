@@ -25,7 +25,7 @@ jobs:
       - name: Download python dependencies
         if: ${{ matrix.targetPlatform == 'Android' }}
         run: |
-          pip install -r runner/requirements.txt
+          pip install -r .github/workflows/slack/requirements.txt
 
       - name: Post to the Slack channel
         if: ${{ matrix.targetPlatform == 'Android' }}
