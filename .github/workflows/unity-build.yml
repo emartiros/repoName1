@@ -22,13 +22,11 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
 
-      - name: Download python dependencies
-        if: ${{ matrix.targetPlatform == 'Android' }}
-        run: |
-          pip install -r .github/workflows/slack/requirements.txt
-
       - name: Post to the Slack channel
         if: ${{ matrix.targetPlatform == 'Android' }}
         run: |
           pip install -r .github/workflows/slack/requirements.txt
           python .github/workflows/slack/__init__.py Android ProjectSettings/boot.config
+        env:
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
